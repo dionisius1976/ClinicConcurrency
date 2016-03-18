@@ -29,11 +29,7 @@ public class Admin extends Thread {
                 else cl.addClient(new Client(clientsNames[i], new Cat(petsNames[i])));
 
                 System.out.println("Admin: client " + clientsNames[i] + " is added! Pets name is "+ petsNames[i]);
-                try {
-                    sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+
                 cl.notifyAll();
             }
         }
