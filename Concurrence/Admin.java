@@ -1,23 +1,19 @@
-package ru.lesson.Concurrence;
+package ru.lesson.lessons.ConcurrenceClinic;
 
-import ru.lesson.lessons.Cat;
-import ru.lesson.lessons.Client;
-import ru.lesson.lessons.ClinicSimpleArrayList;
-import ru.lesson.lessons.Dog;
-
+import ru.lesson.lessons.ClinicProject.Cat;
+import ru.lesson.lessons.ClinicProject.Client;
+import ru.lesson.lessons.ClinicProject.ClinicSimpleArrayList;
+import ru.lesson.lessons.ClinicProject.Dog;
 import java.util.Random;
 
-/**
- * Created by trit on 11.03.2016.
- */
 public class Admin extends Thread {
 
-    private Random rand;
-    private ClinicSimpleArrayList cl;
-    public static String[] clientsNames = {"Ivan", "Alexandr", "Victor", "Maria"};
-    private String[] petsNames = {"Vesta", "Neptun", "Butch", "Mars"};
+    private final Random rand;
+    private final ClinicSimpleArrayList cl;
+    public final static String[] clientsNames = {"Ivan", "Alexandr", "Victor", "Maria"};
+    private final String[] petsNames = {"Vesta", "Neptun", "Butch", "Mars"};
 
-     Admin(ClinicSimpleArrayList cl, String threadName) {
+     Admin(final ClinicSimpleArrayList cl, final String threadName) {
         super(threadName);
         this.rand = new Random();
         this.cl = cl;

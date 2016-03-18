@@ -1,21 +1,18 @@
-package ru.lesson.Concurrence;
+package ru.lesson.lessons.ConcurrenceClinic;
 
+import ru.lesson.lessons.ClinicProject.ClinicSimpleArrayList;
+import ru.lesson.lessons.ClinicProject.Pet;
 
-import ru.lesson.lessons.ClinicSimpleArrayList;
-import ru.lesson.lessons.Pet;
-
-/**
- * Created by trit on 11.03.2016.
- */
 public class User extends Thread {
-    private ClinicSimpleArrayList cl;
-    private int clientsIndex;
+
+    private final ClinicSimpleArrayList cl;
+    private final int clientsIndex;
     private Pet clientsPet;
     private String oldPetsName;
     private String newPetsName;
     private String threadsName;
 
-    public User(ClinicSimpleArrayList cl, int clientsIndex, String threadsName) {
+    public User(final ClinicSimpleArrayList cl, final int clientsIndex, final String threadsName) {
         super(threadsName);
         this.threadsName = threadsName;
         this.clientsIndex = clientsIndex;
@@ -26,6 +23,7 @@ public class User extends Thread {
     @Override
     public void run() {
         System.out.println(threadsName+" is started.");
+
             synchronized (cl) {
                 while (cl.isEmpty()) {
                     try {
@@ -36,10 +34,11 @@ public class User extends Thread {
                 }
 
             }
-                clientsPet = cl.getClient(clientsIndex).getPet();
-                oldPetsName = clientsPet.getName();
-                newPetsName = new StringBuilder(oldPetsName).reverse().toString();
-                cl.editPetsName(clientsPet.getName(), newPetsName);
-                System.out.println("User"+clientsIndex+": Pet " + oldPetsName + " is renamed to "+newPetsName);
-            }
+
+        clientsPet = cl.getClient(clientsIndex).getPet();
+        oldPetsName = clientsPet.getName();
+        newPetsName = new StringBuilder(oldPetsName).reverse().toString();
+        cl.editPetsName(clientsPet.getName(), newPetsName);
+        System.out.println("User"+clientsIndex+": Pet " + oldPetsName + " is renamed to "+newPetsName);
+    }
 }
