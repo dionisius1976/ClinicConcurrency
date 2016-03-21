@@ -22,23 +22,34 @@ public class User extends Thread {
 
     @Override
     public void run() {
-        System.out.println(threadsName+" is started.");
+        System.out.println(threadsName + " is started.");
+        System.out.println();
 
-            synchronized (cl) {
-                while (cl.isEmpty()) {
-                    try {
-                        cl.wait();
-                    } catch (InterruptedException e) {
-                        System.out.println(e);
-                    }
+        synchronized (cl) {
+            while (cl.isEmpty()) {
+                try {
+                    cl.wait();
+                } catch (InterruptedException e) {
+                    System.out.println(e);
                 }
-
             }
 
-        clientsPet = cl.getClient(clientsIndex).getPet();
-        oldPetsName = clientsPet.getName();
-        newPetsName = new StringBuilder(oldPetsName).reverse().toString();
-        cl.editPetsName(clientsPet.getName(), newPetsName);
-        System.out.println("User"+clientsIndex+": Pet " + oldPetsName + " is renamed to "+newPetsName);
+        }
+        //цикл, изменение правильного имени животного на его зеркальное отражение
+        for (int i = 0; i < 5; i++) {
+            oldPetsName = cl.getClient(clientsIndex).getPet().getName();
+            char tempChar = oldPetsName.charAt(0);
+            if (!Character.isLowerCase(tempChar)) {
+                newPetsName = new StringBuilder(oldPetsName).reverse().toString();
+                cl.editPetsName(oldPetsName, newPetsName);
+                System.out.println("User" + clientsIndex + ": Pet " + oldPetsName + " is renamed to " + newPetsName);
+                System.out.println();
+            }
+            try {
+                Thread.sleep(1500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
