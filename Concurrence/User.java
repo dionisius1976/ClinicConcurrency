@@ -1,5 +1,4 @@
 package ru.lesson.lessons.ConcurrenceClinic;
-
 import ru.lesson.lessons.ClinicProject.ClinicSimpleArrayList;
 import ru.lesson.lessons.ClinicProject.Pet;
 
@@ -33,9 +32,8 @@ public class User extends Thread {
                     System.out.println(e);
                 }
             }
-
         }
-        //цикл, изменение правильного имени животного на его зеркальное отражение
+        //Г¶ГЁГЄГ«, ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГҐ ГЇГ°Г ГўГЁГ«ГјГ­Г®ГЈГ® ГЁГ¬ГҐГ­ГЁ Г¦ГЁГўГ®ГІГ­Г®ГЈГ® Г­Г  ГҐГЈГ® Г§ГҐГ°ГЄГ Г«ГјГ­Г®ГҐ Г®ГІГ°Г Г¦ГҐГ­ГЁГҐ
         for (int i = 0; i < 5; i++) {
             oldPetsName = cl.getClient(clientsIndex).getPet().getName();
             char tempChar = oldPetsName.charAt(0);
