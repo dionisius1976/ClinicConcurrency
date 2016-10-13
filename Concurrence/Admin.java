@@ -1,5 +1,4 @@
 package ru.lesson.lessons.ConcurrenceClinic;
-
 import ru.lesson.lessons.ClinicProject.*;
 
 public class Admin extends Thread {
@@ -18,7 +17,7 @@ public class Admin extends Thread {
     public void run() {
 
         System.out.println("Admin is started.");
-        // заполнение списка клиники из массива
+        // Г§Г ГЇГ®Г«Г­ГҐГ­ГЁГҐ Г±ГЇГЁГ±ГЄГ  ГЄГ«ГЁГ­ГЁГЄГЁ ГЁГ§ Г¬Г Г±Г±ГЁГўГ 
 
             for (int i = 0; i < clientsNames.length; i++) {
                 synchronized (cl) {
@@ -29,7 +28,7 @@ public class Admin extends Thread {
         }
         System.out.println();
 		
-        //цикл, если имя животного изменено, то ему присваивается изначальное значение
+        //Г¶ГЁГЄГ«, ГҐГ±Г«ГЁ ГЁГ¬Гї Г¦ГЁГўГ®ГІГ­Г®ГЈГ® ГЁГ§Г¬ГҐГ­ГҐГ­Г®, ГІГ® ГҐГ¬Гі ГЇГ°ГЁГ±ГўГ ГЁГўГ ГҐГІГ±Гї ГЁГ§Г­Г Г·Г Г«ГјГ­Г®ГҐ Г§Г­Г Г·ГҐГ­ГЁГҐ
         for (int i = 0; i < 10; i++) {
             synchronized (cl) {
                 for (int j = 0; j < cl.size(); j++) {
@@ -41,19 +40,16 @@ public class Admin extends Thread {
                         " is changed to "+petsNames[j]);
                         cl.editPetsName(currentPetsName, petsNames[j]);
                         System.out.println();
-
                         }
                     }
                 cl.notifyAll();
                 }
-
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+		try {
+                	Thread.sleep(1000);
+            	} catch (InterruptedException e) {
+                	e.printStackTrace();
             }
         }
         cl.printClientsDataBase();
-
     }
 }
